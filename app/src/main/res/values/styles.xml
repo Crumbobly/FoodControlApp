@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyBottomNavView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item_selector</item>
+        <item name="itemTextColor">@color/bottom_nav_item_selector</item>
+        <item name="backgroundTint">@color/colorBackgroundNavBottom</item>
+        <item name="itemActiveIndicatorStyle">@style/MyBottomNavView.ActiveIndicator</item>
+        <item name="itemPaddingTop">18dp</item>
+        <item name="itemPaddingBottom">14dp</item>
+    </style>
+
+    <style name="MyBottomNavView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/colorBackground</item>
+    </style>
+
+</resources>

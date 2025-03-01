@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="-451dp">
+
+        <TextView
+            android:id="@+id/welcome_input_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/welcome_input_weight"
+            app:layout_constraintBottom_toBottomOf="@+id/welcomeWeightPicker"
+            app:layout_constraintEnd_toStartOf="@+id/welcomeWeightPicker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/welcomeWeightPicker" />
+
+        <TextView
+            android:id="@+id/welcome_kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/welcome_weight"
+            app:layout_constraintBottom_toBottomOf="@+id/welcomeWeightPicker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/welcomeWeightPicker" />
+
+        <Button
+            android:id="@+id/welcome_btn_back"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/welcome_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/welcome_btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/welcome_finish"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/welcome_male_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/male"
+            app:layout_constraintBottom_toTopOf="@+id/welcome_radio_male"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/welcome_female_img"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeWeightPicker"
+            app:srcCompat="@drawable/male" />
+
+        <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
+            android:id="@+id/welcomeWeightPicker"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/welcome_male_img"
+            app:layout_constraintEnd_toStartOf="@+id/welcome_kg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:textSize="@dimen/text_size_medium" />
+
+        <RadioButton
+            android:id="@+id/welcome_radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:checked="true"
+            android:text="@string/male"
+            app:layout_constraintBottom_toTopOf="@+id/welcome_btn_finish"
+            app:layout_constraintEnd_toEndOf="@+id/welcome_male_img"
+            app:layout_constraintStart_toStartOf="@+id/welcome_male_img" />
+
+        <ImageView
+            android:id="@+id/welcome_female_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:contentDescription="@string/female"
+            app:layout_constraintBottom_toBottomOf="@+id/welcome_male_img"
+            app:layout_constraintEnd_toStartOf="@+id/welcome_male_img"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/welcome_male_img"
+            app:srcCompat="@drawable/female" />
+
+        <RadioButton
+            android:id="@+id/welcome_radio_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/female"
+            app:layout_constraintEnd_toEndOf="@+id/welcome_female_img"
+            app:layout_constraintStart_toStartOf="@+id/welcome_female_img"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_female_img" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/welcome_female_img"
+            app:layout_constraintEnd_toStartOf="@+id/welcome_female_img"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/welcome_female_img"
+            app:layout_constraintVertical_bias="0.483"
+            app:srcCompat="@drawable/helicopter" />
+
+        <RadioButton
+            android:id="@+id/welcome_radio_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

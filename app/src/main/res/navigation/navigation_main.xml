@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentHome"
+        android:label="FragmentHome"
+        tools:layout="@layout/fragment_main_home"
+        />
+
+    <fragment
+        android:id="@+id/fragmentFoodBase"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentFoodBase"
+        android:label="FragmentFoodBase"
+        tools:layout="@layout/fragment_main_food_base"
+        />
+
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentSettings"
+        android:label="FragmentSettings"
+        tools:layout="@layout/fragment_main_settings"
+        />
+
+    <fragment
+        android:id="@+id/fragmentStats"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentStats"
+        android:label="FragmentStats"
+        tools:layout="@layout/fragment_main_stats"
+        />
+</navigation>

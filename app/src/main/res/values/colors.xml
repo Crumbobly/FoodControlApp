@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <color name="colorBackground">#eff6f1</color>
+    <color name="colorBackgroundVariant">#FFFFFF</color>
+    <color name="colorOnBackground">#1B1B1B</color>
+    <color name="colorOnBackgroundLight">#434343</color>
+    <color name="colorOnBackgroundExtraLight">#808080</color>
+
+    <color name="colorPrimary">#4bad35</color>
+    <color name="colorPrimaryVariant">#4ac767</color>
+    <color name="colorOnPrimary">#EFEFEF</color>
+
+    <color name="colorSecondary">#ffb349</color>
+    <color name="colorSecondaryVariant">#ffda56</color>
+    <color name="colorOnSecondary">#EFEFEF</color>
+
+
+    <color name="colorBackgroundNavBottom">#FFFFFF</color>
+    <color name="colorActiveItemNavBottom">#ffb349</color>
+    <color name="colorItemNavBottom">#c0c0c0</color>
+
+
+</resources>
+
