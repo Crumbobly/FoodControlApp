@@ -9,8 +9,8 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getUser()
     }
 
-    suspend fun updateUser(user: User){
-        return userDao.updateUser(user)
+    suspend fun insertUser(user: User){
+        return userDao.insertUser(user)
     }
 
 }

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ConstraintCardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/img_other"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/other"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/age_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/age_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/age_picker_view"
+            app:srcCompat="@drawable/helicopter" />
+
+        <ImageView
+            android:id="@+id/img_female"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/female"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/height_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/height_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/height_picker_view"
+            app:srcCompat="@drawable/female" />
+
+        <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
+            android:id="@+id/age_picker_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_other"
+            app:layout_constraintEnd_toStartOf="@+id/height_picker_view"
+            app:layout_constraintHeight_max="200dp"
+            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="100dp"
+            app:textSize="@dimen/text_size_medium" />
+
+        <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
+            android:id="@+id/height_picker_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_female"
+            app:layout_constraintEnd_toStartOf="@+id/weight_picker_view"
+            app:layout_constraintHeight_max="200dp"
+            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintStart_toEndOf="@+id/age_picker_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="100dp"
+            app:textSize="@dimen/text_size_medium" />
+
+        <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
+            android:id="@+id/weight_picker_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_male"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="200dp"
+            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/height_picker_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="100dp"
+            app:textSize="@dimen/text_size_medium" />
+
+        <ImageView
+            android:id="@+id/img_male"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/male"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/weight_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/weight_picker_view"
+            app:srcCompat="@drawable/male" />
+
+        <TextView
+            android:id="@+id/years_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/years"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/age_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/age_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/age_picker_view" />
+
+        <TextView
+            android:id="@+id/age_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/ages"
+            app:layout_constraintBottom_toTopOf="@+id/age_picker_view"
+            app:layout_constraintEnd_toEndOf="@+id/age_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/age_picker_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/height_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/height"
+            app:layout_constraintBottom_toTopOf="@+id/height_picker_view"
+            app:layout_constraintEnd_toEndOf="@+id/height_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/height_picker_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/cm_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/centimeters"
+            android:textColor="@color/design_default_color_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/height_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/height_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/height_picker_view" />
+
+        <TextView
+            android:id="@+id/kg_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kilograms"
+            android:textColor="@color/design_default_color_primary"
+            app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/weight_picker_view"
+            app:layout_constraintTop_toBottomOf="@+id/weight_picker_view" />
+
+        <TextView
+            android:id="@+id/weight_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/weight"
+            app:layout_constraintBottom_toTopOf="@+id/weight_picker_view"
+            app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/weight_picker_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <RadioButton
+            android:id="@+id/radio_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/other"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_other"
+            app:layout_constraintStart_toStartOf="@+id/img_other"
+            app:layout_constraintTop_toBottomOf="@+id/img_other"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/female"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_female"
+            app:layout_constraintStart_toStartOf="@+id/img_female"
+            app:layout_constraintTop_toBottomOf="@+id/img_female"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/male"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_male"
+            app:layout_constraintStart_toStartOf="@+id/img_male"
+            app:layout_constraintTop_toBottomOf="@+id/img_male"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/blockViewPicker"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:importantForAccessibility="no"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/age_picker_view"
+            app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
+            app:layout_constraintStart_toStartOf="@+id/age_picker_view"
+            app:layout_constraintTop_toTopOf="@+id/age_picker_view" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

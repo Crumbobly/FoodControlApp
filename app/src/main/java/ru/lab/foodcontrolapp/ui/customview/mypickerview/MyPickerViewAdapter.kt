@@ -1,5 +1,6 @@
 package ru.lab.foodcontrolapp.ui.customview.mypickerview
 
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class MyPickerViewAdapter<Type>(
     // Количество видимых элементов на экране
     private val visibleItemCount = 3
 
+
     /**
      * Получает элемент по указанной позиции.
      *
@@ -33,6 +35,12 @@ class MyPickerViewAdapter<Type>(
     fun getItemByPos(pos: Int): Type?{
         return data.getOrNull(pos)
     }
+
+
+    fun getPosByItem(item: Type): Int{
+        return data.indexOf(item)
+    }
+
 
     /**
      * Устанавливает новые данные в адаптер, добавляя фиктивные элементы в начале и конце списка.

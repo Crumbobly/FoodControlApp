@@ -14,4 +14,17 @@
         <item name="android:color">@color/colorBackground</item>
     </style>
 
+    <style name="ConstraintCardView">
+        <item name="android:background">@drawable/constraint_card_view</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="ConstraintCardView2" parent="ConstraintCardView">
+        <item name="android:background">@drawable/constraint_card_view_2</item>
+    </style>
+
+
 </resources>

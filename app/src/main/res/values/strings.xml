@@ -4,21 +4,25 @@
     <!--    Экран приветствия-->
     <string name="welcome_welcome">Hello!</string>
     <string name="welcome_guide_text">To access the entire functionality of the application, it is recommended to enter your data</string>
-    <string name="welcome_input_age">Enter your age:</string>
-    <string name="welcome_input_height">Enter your height:</string>
-    <string name="welcome_input_weight">Enter your weight:</string>
-    <string name="welcome_height">Centimeters</string>
-    <string name="welcome_age">Ages</string>
-    <string name="welcome_weight">Kilograms</string>
-    <string name="welcome_skip">Continue without data</string>
-    <string name="welcome_next">Next</string>
-    <string name="welcome_back">Back</string>
-    <string name="welcome_finish">Finish</string>
 
+
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="centimeters">Centimeters</string>
+    <string name="years">Years</string>
+    <string name="kilograms">Kilograms</string>
+
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="ages">Age</string>
 
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="other">Other</string>
+
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
 
 
 

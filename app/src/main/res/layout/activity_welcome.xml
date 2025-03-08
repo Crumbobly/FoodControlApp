@@ -1,70 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackgroundVariant">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/welcome_welcome_textview2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="64dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/ConstraintCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            android:text="@string/welcome_welcome"
-            android:textColor="@color/colorOnBackground"
-            android:textSize="@dimen/text_size_xlarge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/welcome_hello"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
-        <TextView
-            android:id="@+id/welome_guide_textview2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/welcome_welcome"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="@dimen/text_size_xlarge"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/welcome_guide_text"
+                <TextView
+                    android:id="@+id/welcome_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
-            android:textAlignment="center"
-            android:textColor="@color/colorOnBackgroundLight"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_welcome_textview2" />
+                    android:layout_marginTop="16dp"
+                    android:text="@string/welcome_guide_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOnBackgroundLight"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/welcome_hello" />
 
-        <View
-            android:id="@+id/welcome_divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welome_guide_textview2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_welcome"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_divider"
-            app:navGraph="@navigation/navigation_welcome"></androidx.fragment.app.FragmentContainerView>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="ru.lab.foodcontrolapp.ui.customview.userdatainput.UserDataInput"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:layout="@layout/cw_view_user_data_input"
+                tools:layout_marginBottom="16dp"
+                tools:layout_marginTop="16dp"
+                tools:layout_marginStart="16dp"
+                tools:layout_marginEnd="16dp"
+                >
+
+            </androidx.fragment.app.FragmentContainerView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/ConstraintCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/welcome_btn_cancel"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/welcome_btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </layout>
 

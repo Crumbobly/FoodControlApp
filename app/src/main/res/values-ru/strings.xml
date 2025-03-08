@@ -4,20 +4,24 @@
     <!--    Экран приветствия-->
     <string name="welcome_welcome">Здравствуйте!</string>
     <string name="welcome_guide_text">Для доступа ко всей функциональности приложения рекомендуется ввести свои данные</string>
-    <string name="welcome_input_age">Введите ваш возраст:</string>
-    <string name="welcome_input_height">Введите ваш рост:</string>
-    <string name="welcome_input_weight">Введите ваш вес:</string>
-    <string name="welcome_height">Сантиметров</string>
-    <string name="welcome_age">Лет</string>
-    <string name="welcome_weight">Килограмм</string>
-    <string name="welcome_skip">Не вводить данные</string>
-    <string name="welcome_next">Дальше</string>
-    <string name="welcome_back">Назад</string>
-    <string name="welcome_finish">Дальше</string>
 
+
+    <string name="next">Дальше</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="centimeters">Сантиметров</string>
+    <string name="years">Лет</string>
+    <string name="kilograms">Килограмм</string>
+
+    <string name="ages">Возраст</string>
+    <string name="height">Рост</string>
+    <string name="weight">Вес</string>
 
     <string name="male">Мужчина</string>
     <string name="female">Женщина</string>
     <string name="other">Другое</string>
+
+    <string name="save">Сохранить</string>
+    <string name="edit">Редактировать</string>
 
 </resources>

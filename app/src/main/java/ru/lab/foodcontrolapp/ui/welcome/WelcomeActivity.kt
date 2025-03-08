@@ -2,25 +2,14 @@ package ru.lab.foodcontrolapp.ui.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import ru.lab.foodcontrolapp.R
-import ru.lab.foodcontrolapp.data.database.AppDatabase
 import ru.lab.foodcontrolapp.databinding.ActivityWelcomeBinding
-import ru.lab.foodcontrolapp.viewmodel.UserViewModel
-import ru.lab.foodcontrolapp.data.database.repositiry.UserRepository
 import ru.lab.foodcontrolapp.ui.main.MainActivity
-import ru.lab.foodcontrolapp.viewmodel.UserViewModelFactory
+import ru.lab.foodcontrolapp.viewmodel.UserDataInputViewModel
+import ru.lab.foodcontrolapp.viewmodel.UserViewModel
 import ru.lab.foodcontrolapp.viewmodel.WelcomeViewModel
 
 /**
@@ -28,41 +17,34 @@ import ru.lab.foodcontrolapp.viewmodel.WelcomeViewModel
  */
 class WelcomeActivity: AppCompatActivity(){
 
-    // DataBinding
     private lateinit var binding: ActivityWelcomeBinding
-    // Контроллер навигации
-    private lateinit var navController: NavController
-    // ViewModel пользователя (контекст всего приложения)
-    private lateinit var userViewModel: UserViewModel
-    // ViewModel пользователя (контекст WelcomeActivity)
-    private lateinit var welcomeViewModel: WelcomeViewModel
+    private val welcomeViewModel: WelcomeViewModel by viewModels()
+    private val userDataInputViewModel: UserDataInputViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.WelcomeTheme)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_welcome) as NavHostFragment
-        navController = navHostFragment.navController
+        binding.welcomeBtnCancel.setOnClickListener {
+            welcomeViewModel.onBtnCancelPressed()
+        }
 
-        val database = AppDatabase.getInstance(this.application)
-        val repository = UserRepository(database.getUserDao())
-        val factory = UserViewModelFactory(repository, this.application)
-        userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        binding.welcomeBtnNext.setOnClickListener {
+            welcomeViewModel.onBtnNextPressed()
+        }
 
-        welcomeViewModel = ViewModelProvider(this)[WelcomeViewModel::class.java]
-    }
+        userDataInputViewModel.userFullyInput.observe(this){
+            binding.welcomeBtnNext.isEnabled = true
+        }
 
-    fun skipDataEntry() {
-        changeActivityToMain()
-    }
+        welcomeViewModel.onChangeToMain.observe(this) {
+            changeActivityToMain()
+        }
 
-
-    fun finishDataEntry() {
-        userViewModel.updateUser(welcomeViewModel.getUserData())
-        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        sharedPreferences.edit().putBoolean("isFirstLaunch", false).apply()
-        changeActivityToMain()
+        welcomeViewModel.onUserToSave.observe(this) {
+            userDataInputViewModel.saveGlobalUser(userViewModel)
+        }
     }
 
     private fun changeActivityToMain(){

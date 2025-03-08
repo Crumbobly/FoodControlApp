@@ -17,6 +17,7 @@ lifecycleViewmodelKtx = "2.8.7"
 fragmentKtx = "1.8.6"
 room = "2.6.1"
 ksp = "2.1.10-1.0.30"
+dbinspector = "3.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +42,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
+dbinspector = { group = "com.github.infinum.dbinspector", name = "dbinspector", version.ref = "dbinspector" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

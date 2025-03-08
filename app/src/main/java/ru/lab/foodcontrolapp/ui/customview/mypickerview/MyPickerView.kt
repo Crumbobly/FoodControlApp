@@ -19,26 +19,25 @@ import ru.lab.foodcontrolapp.R
  * @param context Контекст, в котором создаётся `MyPickerView`.
  * @param attrs Набор XML-атрибутов, используемых для настройки `MyPickerView`.
  */
-class MyPickerView<Type> @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
-    : RecyclerView(context, attrs) {
+class MyPickerView<Type> @JvmOverloads constructor(private val context: Context, attrs: AttributeSet? = null) :
+    RecyclerView(context, attrs) {
 
-    private lateinit var pickerViewAdapter: MyPickerViewAdapter<Type>
-    private val snapHelper: SnapHelper
+    private var pickerViewAdapter: MyPickerViewAdapter<Type>
+    private val snapHelper: SnapHelper = LinearSnapHelper()
+    private lateinit var myScrollListener: MyPickerViewScrollListener<Type>
     private val textSize: Float
 
     /**
      * Устанавливает список объектов (`Type`) в `MyPickerView`.
      *
      * Эта функция принимает список элементов и обновляет адаптер.
-     * Обновление выполняется в UI-потоке с использованием `post {}`.
      *
      * @param newData Список объектов (`Type`), которые будут установлены в `MyPickerView`.
      */
-    fun setData(newData: List<Type>){
-        this.post {
-            pickerViewAdapter.setData(newData)
-        }
+    fun setData(newData: List<Type>) {
+        pickerViewAdapter.setData(newData)
     }
+
 
     init {
 
@@ -48,44 +47,54 @@ class MyPickerView<Type> @JvmOverloads constructor(context: Context, attrs: Attr
         typedArray.recycle()
 
         // Штука для вертикального расположения элементов
-        this.layoutManager = LinearLayoutManager(context)
+        this.layoutManager = MyLinerLayout(context)
 
         // Помощник при прокрутке
-        snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(this)
         // Устанавливает кастомный ScrollListener
-        this.addOnScrollListener(MyPickerViewScrollListener(context, snapHelper))
+        if (!isInEditMode) {
+            myScrollListener = MyPickerViewScrollListener(context, snapHelper)
+            this.addOnScrollListener(myScrollListener)
+        }
 
         // Полосы сверху и снизу MyPickerView
         val borderDecoration = MyPickerViewBorderItemDecorator(R.color.colorOnBackgroundLight, 3)
         this.addItemDecoration(borderDecoration)
 
-        // После создания добавляем данные в адаптер.
-        // Делаем мы это здесь, т.к. до создания MyPickerView мы не знаем его размеры
-        // А его размер нам нужен определения размеров детей
-        post {
-            pickerViewAdapter = MyPickerViewAdapter(this, textSize)
-            adapter = pickerViewAdapter
-        }
+        pickerViewAdapter = MyPickerViewAdapter(this, textSize)
+        adapter = pickerViewAdapter
+
+    }
+
+    fun setOnItemSelectedListener(listener: (Type) -> Unit) {
+        myScrollListener.setScrollStateChangeCallback(listener)
     }
 
     /**
-     * Получает текущий выбранный элемент `MyPickerView`.
+     * Устанавливает текущий элемент списка.
      *
-     * Функция определяет текущий элемент, основываясь на `SnapHelper` и `LinearLayoutManager`.
-     * Если `snapView` находится в корректной позиции, возвращается соответствующий элемент адаптера.
-     *
-     * @return Текущий элемент списка (`Type`), или `null`, если элемент не найден.
+     * @param item Элемент, который нужно выбрать.
      */
-    fun getCurrentItem(): Type? {
-        val layoutManager = this.layoutManager as? LinearLayoutManager ?: return null
-        val snapView = snapHelper.findSnapView(layoutManager) ?: return null
-        val position = this.getChildAdapterPosition(snapView)
+    fun setCurrentItem(item: Type?) {
 
-        if (position != NO_POSITION)
-            return pickerViewAdapter.getItemByPos(position)
-        return null
+        myScrollListener.disableSound()
 
+        if (item != null) {
+            this.stopScroll()
+            val position = pickerViewAdapter.getPosByItem(item)
+            (this.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(position - 1, 0)
+        }
+
+        post {
+            myScrollListener.enableSound()
+        }
+    }
+
+    fun setVisualEnabled(enabled: Boolean) {
+        isEnabled = enabled
+        isClickable = enabled
+        isFocusable = enabled
+        alpha = if (enabled) 1.0f else 0.5f
     }
 
 
