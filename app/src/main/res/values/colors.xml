@@ -16,6 +16,9 @@
     <color name="colorSecondaryVariant">#ffda56</color>
     <color name="colorOnSecondary">#EFEFEF</color>
 
+    <color name="colorTertiary">#03DAC6</color>
+    <color name="colorTertiaryVariant">#6200EE</color>
+    <color name="colorOnTertiary">#EFEFEF</color>
 
     <color name="colorBackgroundNavBottom">#FFFFFF</color>
     <color name="colorActiveItemNavBottom">#ffb349</color>

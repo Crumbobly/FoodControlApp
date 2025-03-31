@@ -27,6 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
+        @OptIn(DelicateCoroutinesApi::class)
         fun getInstance(context: Context): AppDatabase {
             synchronized(this) {
                 var instance = INSTANCE
@@ -34,6 +35,17 @@ abstract class AppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(context.applicationContext,
                         AppDatabase::class.java, "food_control_db")
                         .fallbackToDestructiveMigration()
+                        .addCallback(object: Callback() {
+                            override fun onCreate(db: SupportSQLiteDatabase) {
+                                super.onCreate(db)
+                                GlobalScope.launch(Dispatchers.IO) {
+                                    getInstance(context).getUserDao().insertUser(User())
+                                    Log.d("DB",
+                                        getInstance(context).getUserDao().getUser()?.age.toString()
+                                    )
+                                }
+                            }
+                        })
                         .build()
                     INSTANCE = instance
                 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.lab.foodcontrolapp.data.database.entity.Gender
 import ru.lab.foodcontrolapp.data.database.entity.User
+import ru.lab.foodcontrolapp.viewmodel.appcontext.DBUserViewModel
 
 
 class UserDataInputViewModel(): ViewModel() {
@@ -13,8 +14,8 @@ class UserDataInputViewModel(): ViewModel() {
     private val _userData = MutableLiveData(User())
     val userData: LiveData<User> get() = _userData
 
-    private val _userFullyInput = MutableLiveData<Unit>()
-    val userFullyInput: LiveData<Unit> get() = _userFullyInput
+    private val _userFullyInput = MutableLiveData(false)
+    val userFullyInput: LiveData<Boolean> get() = _userFullyInput
 
     val dataAges: List<Int> = (1..100).toList()
     val dataHeight: List<Int> = (55..251).toList()
@@ -28,13 +29,13 @@ class UserDataInputViewModel(): ViewModel() {
             userData.value?.weight != null &&
             userData.value?.height != null)
         {
-            _userFullyInput.value = Unit
+            _userFullyInput.value = true
         }
 
     }
 
     fun setLocalUser(user: User?){
-        Log.d(" UserDataInputViewModel Set user", "$user")
+        Log.d("UserDataIVM Set user", "$user")
         _userData.postValue(user ?: User())
     }
 
@@ -48,11 +49,8 @@ class UserDataInputViewModel(): ViewModel() {
         )
         _userData.value = updatedUser
         notifyUserFullyInput()
-        Log.d(" UserDataInputViewModel Update user", "$updatedUser")
+        Log.d("UserDataIVM Update user", "$updatedUser")
     }
 
-    fun saveGlobalUser(userViewModel: UserViewModel) {
-        userData.value?.let { userViewModel.insertUserToDatabase(it) }
-    }
 
 }

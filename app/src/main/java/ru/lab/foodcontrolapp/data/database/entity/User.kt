@@ -21,5 +21,9 @@ data class User(
     val age: Int? = null,
 
     @ColumnInfo(name = "gender")
-    val gender: Gender? = null
+    val gender: Gender? = null,
+
+    // Усреднённое значение по умолчанию
+    @ColumnInfo(name = "calories")
+    val calories: Int = 2250
 )

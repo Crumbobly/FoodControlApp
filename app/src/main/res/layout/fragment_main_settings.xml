@@ -16,19 +16,35 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_warning_block_1"
                 style="@style/ConstraintCardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/textView3"
+                <ImageView
+                    android:id="@+id/warning_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Для лучшей работы приложения рекомендуется ввести ваши данные"
+                    android:contentDescription="@string/warning"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_warning" />
+
+                <TextView
+                    android:id="@+id/warning_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/no_user_input_warning"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/warning_image"
+                    app:layout_constraintHorizontal_bias="0.333"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.508" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -37,6 +53,7 @@
                 android:name="ru.lab.foodcontrolapp.ui.customview.userdatainput.UserDataInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="4dp"
                 tools:layout="@layout/cw_view_user_data_input"
                 tools:layout_marginBottom="16dp"
                 tools:layout_marginEnd="16dp"
@@ -47,6 +64,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/saveUserLayout"
                 style="@style/ConstraintCardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,12 +72,13 @@
                 android:layout_marginTop="-34dp">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/settings_btn_edit"
+                    android:id="@+id/settings_btn_edit_user"
                     style="@style/Widget.Material3.Button.ElevatedButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorBackground"
                     android:text="@string/edit"
+                    android:textSize="@dimen/text_size_small"
                     app:icon="@drawable/ic_edit"
                     app:iconGravity="start"
                     app:iconPadding="8dp"
@@ -68,12 +87,13 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/settings_btn_cancel"
+                    android:id="@+id/settings_btn_cancel_user"
                     style="@style/Widget.Material3.Button.ElevatedButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorBackground"
                     android:text="@string/cancel"
+                    android:textSize="@dimen/text_size_small"
                     android:visibility="invisible"
                     app:icon="@drawable/ic_edit"
                     app:iconGravity="start"
@@ -83,18 +103,316 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/settings_btn_save"
+                    android:id="@+id/settings_btn_save_user"
                     style="@style/Widget.Material3.Button.ElevatedButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorBackground"
                     android:text="@string/save"
+                    android:textSize="@dimen/text_size_small"
                     android:visibility="invisible"
                     app:icon="@drawable/ic_save"
                     app:iconGravity="start"
                     app:iconPadding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/ConstraintCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <ImageButton
+                    android:id="@+id/btn3_up"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/more"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal3"
+                    app:layout_constraintStart_toStartOf="@+id/cal3"
+                    app:layout_constraintTop_toTopOf="@+id/btn4_up"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn3_down"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/less"
+                    android:rotationX="180"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal3"
+                    app:layout_constraintStart_toStartOf="@+id/cal3"
+                    app:layout_constraintTop_toBottomOf="@+id/cal3"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn4_up"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/more"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal4"
+                    app:layout_constraintStart_toStartOf="@+id/cal4"
+                    app:layout_constraintTop_toBottomOf="@+id/daily_limits_text"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn4_down"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/less"
+                    android:rotationX="180"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal4"
+                    app:layout_constraintStart_toStartOf="@+id/cal4"
+                    app:layout_constraintTop_toBottomOf="@+id/cal4"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn2_up"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/more"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal2"
+                    app:layout_constraintStart_toStartOf="@+id/cal2"
+                    app:layout_constraintTop_toTopOf="@+id/btn4_up"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn2_down"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/less"
+                    android:rotationX="180"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal2"
+                    app:layout_constraintStart_toStartOf="@+id/cal2"
+                    app:layout_constraintTop_toBottomOf="@+id/cal2"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn1_up"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/more"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal1"
+                    app:layout_constraintStart_toStartOf="@+id/cal1"
+                    app:layout_constraintTop_toTopOf="@+id/btn4_up"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <ImageButton
+                    android:id="@+id/btn1_down"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/less"
+                    android:rotationX="180"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="@+id/cal1"
+                    app:layout_constraintStart_toStartOf="@+id/cal1"
+                    app:layout_constraintTop_toBottomOf="@+id/cal1"
+                    app:srcCompat="@drawable/ic_triangle_up" />
+
+                <TextView
+                    android:id="@+id/cal4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="@dimen/text_size_xxlarge"
+                    app:layout_constraintEnd_toStartOf="@+id/kcal"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cal3"
+                    app:layout_constraintTop_toBottomOf="@+id/btn4_up"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/cal3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="@dimen/text_size_xxlarge"
+                    app:layout_constraintEnd_toStartOf="@+id/cal4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cal2"
+                    app:layout_constraintTop_toBottomOf="@+id/btn3_up"
+                    tools:text="2" />
+
+                <TextView
+                    android:id="@+id/cal1"
+                    style="@style/Widget.AppCompat.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="@dimen/text_size_xxlarge"
+                    app:layout_constraintEnd_toStartOf="@+id/cal2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn1_up"
+                    tools:text="4" />
+
+                <ImageButton
+                    android:id="@+id/update_calories_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:backgroundTint="@color/colorBackground"
+                    android:contentDescription="@string/update"
+                    android:elevation="4dp"
+                    android:scaleX=".6"
+                    android:scaleY=".6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn1_down"
+                    app:srcCompat="@drawable/ic_redo" />
+
+                <TextView
+                    android:id="@+id/use_recomented_params_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/daily_limits_instruction"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/update_calories_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/update_calories_btn"
+                    app:layout_constraintTop_toTopOf="@+id/update_calories_btn" />
+
+                <TextView
+                    android:id="@+id/kcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/kkl"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn4_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cal4"
+                    app:layout_constraintTop_toTopOf="@+id/btn4_up" />
+
+                <TextView
+                    android:id="@+id/cal2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="@dimen/text_size_xxlarge"
+                    app:layout_constraintEnd_toStartOf="@+id/cal3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cal1"
+                    app:layout_constraintTop_toBottomOf="@+id/btn2_up"
+                    tools:text="3" />
+
+                <TextView
+                    android:id="@+id/daily_limits_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily_limits_lbl"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/daily_limits_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:text="@string/daily_limits_info"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/daily_limits_lbl" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settings_btn_save_kcal"
+                    style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/colorBackground"
+                    android:text="@string/save"
+                    android:textSize="@dimen/text_size_small"
+                    android:visibility="invisible"
+                    app:icon="@drawable/ic_save"
+                    app:iconGravity="start"
+                    app:iconPadding="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/update_calories_btn" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settings_btn_cancel_kcal"
+                    style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/colorBackground"
+                    android:text="@string/cancel"
+                    android:textSize="@dimen/text_size_small"
+                    android:visibility="invisible"
+                    app:icon="@drawable/ic_edit"
+                    app:iconGravity="start"
+                    app:iconPadding="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/update_calories_btn" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settings_btn_edit_kcal"
+                    style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/colorBackground"
+                    android:text="@string/edit"
+                    android:textSize="@dimen/text_size_small"
+                    app:icon="@drawable/ic_edit"
+                    app:iconGravity="start"
+                    app:iconPadding="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/update_calories_btn" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

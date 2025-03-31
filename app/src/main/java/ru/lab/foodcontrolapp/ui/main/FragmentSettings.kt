@@ -9,35 +9,50 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
+import androidx.fragment.app.viewModels
 import ru.lab.foodcontrolapp.R
+import ru.lab.foodcontrolapp.data.database.entity.User
 import ru.lab.foodcontrolapp.databinding.FragmentMainSettingsBinding
 import ru.lab.foodcontrolapp.ui.customview.userdatainput.UserDataInput
+import ru.lab.foodcontrolapp.viewmodel.SettingsViewModel
 import ru.lab.foodcontrolapp.viewmodel.UserDataInputViewModel
-import ru.lab.foodcontrolapp.viewmodel.UserViewModel
+import ru.lab.foodcontrolapp.viewmodel.appcontext.DBUserViewModel
+import ru.lab.foodcontrolapp.viewmodel.factory.SettingsViewModelFactory
 
 class FragmentSettings : Fragment(R.layout.fragment_main_settings) {
 
     private lateinit var binding: FragmentMainSettingsBinding
-    private val userViewModel: UserViewModel by activityViewModels()
-    private val userDataInputViewModel: UserDataInputViewModel by activityViewModels()
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (hidden) {
-            clearFields()
-            binding.settingsBtnEdit.visibility = View.VISIBLE
-            binding.settingsBtnEdit.alpha = 1f
-            binding.settingsBtnSave.visibility = View.INVISIBLE
-            binding.settingsBtnSave.alpha = 0f
-            binding.settingsBtnCancel.visibility = View.INVISIBLE
-            binding.settingsBtnCancel.alpha = 0f
-            Log.d("FragmentSettings", "is hidden")
-        }
+    private val _dbUserViewModel: DBUserViewModel by viewModels()
+    private val _userDataInputViewModel: UserDataInputViewModel by viewModels()
+
+    private val settingsViewModel: SettingsViewModel by viewModels {
+        SettingsViewModelFactory(
+            _userDataInputViewModel.userData,
+            _dbUserViewModel.userData,
+            _dbUserViewModel.isUserDataComplete,
+            _dbUserViewModel
+        )
     }
+
+
+//    override fun onHiddenChanged(hidden: Boolean) {
+//        super.onHiddenChanged(hidden)
+//        if (hidden) {
+//            clearFields()
+//            binding.settingsBtnEdit.visibility = View.VISIBLE
+//            binding.settingsBtnEdit.alpha = 1f
+//            binding.settingsBtnSave.visibility = View.INVISIBLE
+//            binding.settingsBtnSave.alpha = 0f
+//            binding.settingsBtnCancel.visibility = View.INVISIBLE
+//            binding.settingsBtnCancel.alpha = 0f
+//            Log.d("FragmentSettings", "is hidden")
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,53 +74,168 @@ class FragmentSettings : Fragment(R.layout.fragment_main_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userDataInput = childFragmentManager.findFragmentById(R.id.fragmentContainerView) as UserDataInput
-        userViewModel.userData.observe(this as LifecycleOwner) { user ->
-            if (user != null)
-                userDataInput.setUserData(user)
-            userDataInput.setEnabled(false)
-        }
+        val userDataInput =
+            childFragmentManager.findFragmentById(R.id.fragmentContainerView) as UserDataInput
+        userDataInput.setUserDataInputViewModel(_userDataInputViewModel)
 
-        binding.settingsBtnEdit.setOnClickListener {
-            animateButtonSwap(true)
-            clearFields()
+        binding.settingsBtnEditUser.setOnClickListener {
+            settingsViewModel.onBtnEditUserPressed()
+            animateButtonSwap(
+                binding.settingsBtnEditUser,
+                binding.settingsBtnSaveUser,
+                binding.settingsBtnCancelUser,
+                true
+            )
             userDataInput.setEnabled(true)
         }
-        binding.settingsBtnSave.setOnClickListener {
-            animateButtonSwap(false)
-            saveUser()
+        binding.settingsBtnSaveUser.setOnClickListener {
+            settingsViewModel.onBtnSaveUserPressed()
+            animateButtonSwap(
+                binding.settingsBtnSaveUser,
+                binding.settingsBtnEditUser,
+                binding.settingsBtnCancelUser,
+                false
+            )
             userDataInput.setEnabled(false)
         }
-        binding.settingsBtnCancel.setOnClickListener {
-            animateButtonSwap(false)
-            clearFields()
+        binding.settingsBtnCancelUser.setOnClickListener {
+            settingsViewModel.onBtnCancelUserPressed()
+            animateButtonSwap(
+                binding.settingsBtnSaveUser,
+                binding.settingsBtnEditUser,
+                binding.settingsBtnCancelUser,
+                false
+            )
             userDataInput.setEnabled(false)
         }
-    }
 
-    private fun saveUser() {
-        userDataInputViewModel.userData.value?.let { userViewModel.insertUserToDatabase(it) }
-    }
-
-    private fun clearFields() {
-        val userDataInput = childFragmentManager.findFragmentById(R.id.fragmentContainerView) as UserDataInput
-        userViewModel.userData.value?.let { userDataInput.setUserData(it) }
-        userDataInput.setEnabled(false)
-    }
-
-
-    private fun animateButtonSwap(isEditClick: Boolean) {
-        val fromButton: View
-        val toButton: View
-        val buttonCancel = binding.settingsBtnCancel
-
-        if (isEditClick) {
-            fromButton = binding.settingsBtnEdit
-            toButton = binding.settingsBtnSave
-        } else {
-            fromButton = binding.settingsBtnSave
-            toButton = binding.settingsBtnEdit
+        binding.settingsBtnEditKcal.setOnClickListener {
+            settingsViewModel.onBtnEditKCalPressed()
+            animateButtonSwap(
+                binding.settingsBtnEditKcal,
+                binding.settingsBtnSaveKcal,
+                binding.settingsBtnCancelKcal,
+                true
+            )
+            setEnabledKcalInput(true)
         }
+        binding.settingsBtnSaveKcal.setOnClickListener {
+            settingsViewModel.onBtnSaveKCalPressed()
+            animateButtonSwap(
+                binding.settingsBtnSaveKcal,
+                binding.settingsBtnEditKcal,
+                binding.settingsBtnCancelKcal,
+                false
+            )
+            setEnabledKcalInput(false)
+        }
+        binding.settingsBtnCancelKcal.setOnClickListener {
+            settingsViewModel.onBtnCancelKCalPressed()
+            animateButtonSwap(
+                binding.settingsBtnSaveKcal,
+                binding.settingsBtnEditKcal,
+                binding.settingsBtnCancelKcal,
+                false
+            )
+            setEnabledKcalInput(false)
+        }
+        binding.updateCaloriesBtn.setOnClickListener {
+            settingsViewModel.onUpdateCaloriesBtnPressed()
+        }
+        binding.btn1Up.setOnClickListener {
+            settingsViewModel.changeLocalCalories(true, 0)
+        }
+        binding.btn1Down.setOnClickListener {
+            settingsViewModel.changeLocalCalories(false, 0)
+        }
+        binding.btn2Up.setOnClickListener {
+            settingsViewModel.changeLocalCalories(true, 1)
+        }
+        binding.btn2Down.setOnClickListener {
+            settingsViewModel.changeLocalCalories(false, 1)
+        }
+        binding.btn3Up.setOnClickListener {
+            settingsViewModel.changeLocalCalories(true, 2)
+        }
+        binding.btn3Down.setOnClickListener {
+            settingsViewModel.changeLocalCalories(false, 2)
+        }
+        binding.btn4Up.setOnClickListener {
+            settingsViewModel.changeLocalCalories(true, 3)
+        }
+        binding.btn4Down.setOnClickListener {
+            settingsViewModel.changeLocalCalories(false, 3)
+        }
+
+        settingsViewModel.userDataGlobal.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                userDataInput.setUserData(user)
+                settingsViewModel.setLocalCalories(user.calories)
+            }
+            userDataInput.setEnabled(false)
+            setEnabledKcalInput(false)
+        }
+
+        settingsViewModel.isUserDataComplete.observe(viewLifecycleOwner) { state ->
+            setVisibleWarningBlock1(state)
+        }
+        settingsViewModel.resetUser.observe(viewLifecycleOwner) { user ->
+            resetUser(user)
+        }
+        settingsViewModel.resetCalories.observe(viewLifecycleOwner) { calories ->
+            resetCalories(calories)
+        }
+
+    }
+
+    private fun setEnabledKcalInput(state: Boolean) {
+        binding.btn1Up.isEnabled = state
+        binding.btn1Down.isEnabled = state
+        binding.btn2Up.isEnabled = state
+        binding.btn2Down.isEnabled = state
+        binding.btn3Up.isEnabled = state
+        binding.btn3Down.isEnabled = state
+        binding.btn4Up.isEnabled = state
+        binding.btn4Down.isEnabled = state
+
+        binding.btn1Up.isInvisible = !state
+        binding.btn1Down.isInvisible = !state
+        binding.btn2Up.isInvisible = !state
+        binding.btn2Down.isInvisible = !state
+        binding.btn3Up.isInvisible = !state
+        binding.btn3Down.isInvisible = !state
+        binding.btn4Up.isInvisible = !state
+        binding.btn4Down.isInvisible = !state
+    }
+
+    private fun resetCalories(n: Int) {
+        val digits = n.toString().padStart(4, '0').map { it.toString().toInt() }
+        binding.cal1.text = "${digits[0]}"
+        binding.cal2.text = "${digits[1]}"
+        binding.cal3.text = "${digits[2]}"
+        binding.cal4.text = "${digits[3]}"
+    }
+
+    private fun resetUser(user: User) {
+        val userDataInput =
+            childFragmentManager.findFragmentById(R.id.fragmentContainerView) as UserDataInput
+
+        userDataInput.setUserData(user)
+    }
+
+    private fun setVisibleWarningBlock1(visible: Boolean) {
+        when (visible) {
+            true -> binding.settingsWarningBlock1.visibility = View.GONE
+            false -> binding.settingsWarningBlock1.visibility = View.VISIBLE
+        }
+    }
+
+    private fun animateButtonSwap(
+        fromButton: View,
+        toButton: View,
+        buttonCancel: View,
+        isEditClick: Boolean
+    ) {
 
         val fadeOut = ObjectAnimator.ofFloat(fromButton, View.ALPHA, 1f, 0f).apply {
             duration = 200

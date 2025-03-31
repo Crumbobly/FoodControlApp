@@ -14,7 +14,6 @@
         <item name="colorOnBackground">@color/colorOnBackground</item>
 
         <item name="android:statusBarColor">@color/colorBackground</item>
-        <item name="android:navigationBarColor">@color/colorBackground</item>
 
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>

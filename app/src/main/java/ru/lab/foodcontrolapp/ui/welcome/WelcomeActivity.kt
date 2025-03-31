@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import ru.lab.foodcontrolapp.R
 import ru.lab.foodcontrolapp.databinding.ActivityWelcomeBinding
+import ru.lab.foodcontrolapp.ui.customview.userdatainput.UserDataInput
 import ru.lab.foodcontrolapp.ui.main.MainActivity
 import ru.lab.foodcontrolapp.viewmodel.UserDataInputViewModel
-import ru.lab.foodcontrolapp.viewmodel.UserViewModel
+import ru.lab.foodcontrolapp.viewmodel.appcontext.DBUserViewModel
 import ru.lab.foodcontrolapp.viewmodel.WelcomeViewModel
+import ru.lab.foodcontrolapp.viewmodel.factory.WelcomeViewModelFactory
 
 /**
  * Класс для activity страницы приветствия.
@@ -18,33 +20,40 @@ import ru.lab.foodcontrolapp.viewmodel.WelcomeViewModel
 class WelcomeActivity: AppCompatActivity(){
 
     private lateinit var binding: ActivityWelcomeBinding
-    private val welcomeViewModel: WelcomeViewModel by viewModels()
-    private val userDataInputViewModel: UserDataInputViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
+
+    private val _userDataInputViewModel: UserDataInputViewModel by viewModels()
+    private val _dbUserViewModel: DBUserViewModel by viewModels()
+
+    private val welcomeViewModel: WelcomeViewModel by viewModels {
+        WelcomeViewModelFactory(
+            application,
+            _userDataInputViewModel.userData,
+            _userDataInputViewModel.userFullyInput,
+            _dbUserViewModel
+            )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome)
 
+        val userDataInput = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as UserDataInput
+        userDataInput.setUserDataInputViewModel(_userDataInputViewModel)
+
         binding.welcomeBtnCancel.setOnClickListener {
             welcomeViewModel.onBtnCancelPressed()
         }
-
         binding.welcomeBtnNext.setOnClickListener {
             welcomeViewModel.onBtnNextPressed()
         }
 
-        userDataInputViewModel.userFullyInput.observe(this){
-            binding.welcomeBtnNext.isEnabled = true
+        welcomeViewModel.userDataLocalIsFullyInput.observe(this){
+            state -> binding.welcomeBtnNext.isEnabled = state
         }
-
         welcomeViewModel.onChangeToMain.observe(this) {
             changeActivityToMain()
         }
 
-        welcomeViewModel.onUserToSave.observe(this) {
-            userDataInputViewModel.saveGlobalUser(userViewModel)
-        }
     }
 
     private fun changeActivityToMain(){

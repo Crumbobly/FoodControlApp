@@ -5,13 +5,30 @@
     <string name="welcome_welcome">Здравствуйте!</string>
     <string name="welcome_guide_text">Для доступа ко всей функциональности приложения рекомендуется ввести свои данные</string>
 
+    <!--    Экран настроек -->
+    <string name="no_user_input_warning">Для лучшей работы приложения рекомендуется ввести ваши данные</string>
+    <string name="daily_limits_lbl">Дневной лимит калорий</string>
+    <string name="daily_limits_instruction">Использовать рекомендованное для ваших параметров значение</string>
+    <string name="daily_limits_info">Дневной лимит калорий – это количество энергии, которое вы можете потреблять в течение дня, чтобы достичь своих целей: поддержания веса, похудения или набора массы.</string>
 
+    <!--    Экран блюда -->
+    <string name="food_detail_info">Данные на 100 грамм блюда</string>
+    <string name="food_detail_calories">Энергетическая ценность</string>
+
+
+    <string name="apple">Яблоко</string>
     <string name="next">Дальше</string>
     <string name="cancel">Отмена</string>
+
+    <string name="proteins">Белки</string>
+    <string name="carbs">Углеводы</string>
+    <string name="fats">Жиры</string>
 
     <string name="centimeters">Сантиметров</string>
     <string name="years">Лет</string>
     <string name="kilograms">Килограмм</string>
+    <string name="kkl">ККл</string>
+    <string name="gramme">грамм</string>
 
     <string name="ages">Возраст</string>
     <string name="height">Рост</string>
@@ -21,7 +38,13 @@
     <string name="female">Женщина</string>
     <string name="other">Другое</string>
 
+    <string name="back">Назад</string>
     <string name="save">Сохранить</string>
     <string name="edit">Редактировать</string>
+    <string name="update">Обновить</string>
+    <string name="search">Поиск</string>
+    <string name="warning">Внимание</string>
+    <string name="less">Больше</string>
+    <string name="more">Меньше</string>
 
 </resources>

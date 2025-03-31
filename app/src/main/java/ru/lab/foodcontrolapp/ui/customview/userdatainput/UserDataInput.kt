@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.lab.foodcontrolapp.R
 import ru.lab.foodcontrolapp.data.database.entity.Gender
 import ru.lab.foodcontrolapp.data.database.entity.User
@@ -16,7 +20,11 @@ import ru.lab.foodcontrolapp.viewmodel.UserDataInputViewModel
 class UserDataInput: Fragment(R.layout.cw_view_user_data_input) {
 
     private lateinit var binding: CwViewUserDataInputBinding
-    private val userDataInputViewModel: UserDataInputViewModel by activityViewModels()
+    private lateinit var userDataInputViewModel: UserDataInputViewModel
+
+    fun setUserDataInputViewModel(userDataInputViewModel: UserDataInputViewModel){
+        this.userDataInputViewModel = userDataInputViewModel
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,

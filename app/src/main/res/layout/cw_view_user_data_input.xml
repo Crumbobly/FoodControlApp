@@ -44,11 +44,11 @@
             app:layout_constraintBottom_toTopOf="@+id/img_other"
             app:layout_constraintEnd_toStartOf="@+id/height_picker_view"
             app:layout_constraintHeight_max="200dp"
-            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintHeight_min="160dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="100dp"
-            app:textSize="@dimen/text_size_medium" />
+            app:textSize="@dimen/text_size_large" />
 
         <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
             android:id="@+id/height_picker_view"
@@ -61,11 +61,11 @@
             app:layout_constraintBottom_toTopOf="@+id/img_female"
             app:layout_constraintEnd_toStartOf="@+id/weight_picker_view"
             app:layout_constraintHeight_max="200dp"
-            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintHeight_min="160dp"
             app:layout_constraintStart_toEndOf="@+id/age_picker_view"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="100dp"
-            app:textSize="@dimen/text_size_medium" />
+            app:textSize="@dimen/text_size_large" />
 
         <ru.lab.foodcontrolapp.ui.customview.mypickerview.MyPickerView
             android:id="@+id/weight_picker_view"
@@ -76,12 +76,12 @@
             app:layout_constraintBottom_toTopOf="@+id/img_male"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_max="200dp"
-            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintHeight_min="160dp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/height_picker_view"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="100dp"
-            app:textSize="@dimen/text_size_medium" />
+            app:textSize="@dimen/text_size_large" />
 
         <ImageView
             android:id="@+id/img_male"
@@ -102,6 +102,7 @@
             android:layout_height="wrap_content"
             android:text="@string/years"
             android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="@+id/age_picker_view"
             app:layout_constraintStart_toStartOf="@+id/age_picker_view"
             app:layout_constraintTop_toBottomOf="@+id/age_picker_view" />
@@ -113,6 +114,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:text="@string/ages"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toTopOf="@+id/age_picker_view"
             app:layout_constraintEnd_toEndOf="@+id/age_picker_view"
             app:layout_constraintStart_toStartOf="@+id/age_picker_view"
@@ -126,6 +128,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:text="@string/height"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toTopOf="@+id/height_picker_view"
             app:layout_constraintEnd_toEndOf="@+id/height_picker_view"
             app:layout_constraintStart_toStartOf="@+id/height_picker_view"
@@ -137,7 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/centimeters"
-            android:textColor="@color/design_default_color_secondary"
+            android:textColor="@color/colorTertiary"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="@+id/height_picker_view"
             app:layout_constraintStart_toStartOf="@+id/height_picker_view"
             app:layout_constraintTop_toBottomOf="@+id/height_picker_view" />
@@ -147,7 +151,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kilograms"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/colorTertiaryVariant"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
             app:layout_constraintStart_toStartOf="@+id/weight_picker_view"
             app:layout_constraintTop_toBottomOf="@+id/weight_picker_view" />
@@ -159,6 +164,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:text="@string/weight"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toTopOf="@+id/weight_picker_view"
             app:layout_constraintEnd_toEndOf="@+id/weight_picker_view"
             app:layout_constraintStart_toStartOf="@+id/weight_picker_view"
@@ -171,6 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/other"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/img_other"
             app:layout_constraintStart_toStartOf="@+id/img_other"
@@ -183,6 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/female"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/img_female"
             app:layout_constraintStart_toStartOf="@+id/img_female"
@@ -195,6 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/male"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/img_male"
             app:layout_constraintStart_toStartOf="@+id/img_male"

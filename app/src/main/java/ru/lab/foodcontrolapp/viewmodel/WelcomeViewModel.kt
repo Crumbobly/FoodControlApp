@@ -1,40 +1,43 @@
 package ru.lab.foodcontrolapp.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import ru.lab.foodcontrolapp.data.database.AppDatabase
+import androidx.lifecycle.ViewModel
 import ru.lab.foodcontrolapp.data.database.entity.User
-import ru.lab.foodcontrolapp.data.database.repositiry.UserRepository
+import ru.lab.foodcontrolapp.viewmodel.appcontext.DBUserViewModel
 
-class WelcomeViewModel(private val application: Application): AndroidViewModel(application) {
+class WelcomeViewModel(
+    private val application: Application,
+    val userDataLocal: LiveData<User>,
+    val userDataLocalIsFullyInput: LiveData<Boolean>,
+    val dbUserViewModel: DBUserViewModel
 
-    private val _onChangeToMain = MutableLiveData<Boolean>()
-    val onChangeToMain: LiveData<Boolean> get() = _onChangeToMain
+): ViewModel() {
 
-    private val _onUserToSave = MutableLiveData<Boolean>()
-    val onUserToSave: LiveData<Boolean> get() = _onUserToSave
+    private val _onChangeToMain = MutableLiveData<Unit>()
+    val onChangeToMain: LiveData<Unit> get() = _onChangeToMain
 
 
     fun onBtnCancelPressed(){
         setFirstLaunchPreference()
-        _onChangeToMain.postValue(true)
+        _onChangeToMain.postValue(Unit)
     }
 
     fun onBtnNextPressed(){
         setFirstLaunchPreference()
-        _onUserToSave.postValue(true)
-        _onChangeToMain.postValue(true)
+        saveUserInDB()
+        _onChangeToMain.postValue(Unit)
     }
 
     private fun setFirstLaunchPreference(){
         val sharedPreferences = application.getSharedPreferences("user_prefs", MODE_PRIVATE)
         sharedPreferences.edit().putBoolean("isFirstLaunch", false).apply()
+    }
+
+    private fun saveUserInDB(){
+        userDataLocal.value?.let { dbUserViewModel.updateUserInDatabase(it, calculateDefaultCalories=true) }
     }
 
 }

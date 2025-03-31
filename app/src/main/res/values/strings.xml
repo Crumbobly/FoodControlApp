@@ -1,17 +1,33 @@
 <resources>
     <string name="app_name">Food Control</string>
 
-    <!--    Экран приветствия-->
+    <!--    Экран приветствия -->
     <string name="welcome_welcome">Hello!</string>
     <string name="welcome_guide_text">To access the entire functionality of the application, it is recommended to enter your data</string>
 
+    <!--    Экран настроек -->
+    <string name="no_user_input_warning">For better operation of the application, it is recommended to enter your data</string>
+    <string name="daily_limits_lbl">Daily calorie limit</string>
+    <string name="daily_limits_instruction">Use the recommended value for your parameters</string>
+    <string name="daily_limits_info">Your daily calorie limit is the amount of energy you can consume throughout the day to reach your weight maintenance, weight loss, or weight gain goals.</string>
 
+    <!--    Экран блюда -->
+    <string name="food_detail_info">Data per 100 grams of food</string>
+    <string name="food_detail_calories">Energy value</string>
+
+    <string name="apple">Apple</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
+
+    <string name="proteins">Proteins</string>
+    <string name="carbs">Carbs</string>
+    <string name="fats">Fats</string>
 
     <string name="centimeters">Centimeters</string>
     <string name="years">Years</string>
     <string name="kilograms">Kilograms</string>
+    <string name="kkl">KCal</string>
+    <string name="gramme">grams</string>
 
     <string name="height">Height</string>
     <string name="weight">Weight</string>
@@ -21,9 +37,14 @@
     <string name="female">Female</string>
     <string name="other">Other</string>
 
+    <string name="back">Back</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
-
+    <string name="update">Update</string>
+    <string name="search">Search</string>
+    <string name="warning">Warning</string>
+    <string name="less">Less</string>
+    <string name="more">More</string>
 
 
 </resources>

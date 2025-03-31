@@ -8,6 +8,7 @@
         <item name="itemActiveIndicatorStyle">@style/MyBottomNavView.ActiveIndicator</item>
         <item name="itemPaddingTop">18dp</item>
         <item name="itemPaddingBottom">14dp</item>
+
     </style>
 
     <style name="MyBottomNavView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
@@ -26,5 +27,9 @@
         <item name="android:background">@drawable/constraint_card_view_2</item>
     </style>
 
+    <style name="BorderedTextView">
+        <item name="android:background">@drawable/bordered_background</item>
+        <item name="android:padding">8dp</item>
+    </style>
 
 </resources>
