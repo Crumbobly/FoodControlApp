@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
+    android:id="@+id/navigation_main"
     app:startDestination="@id/fragmentHome">
 
     <fragment
@@ -10,14 +10,22 @@
         android:name="ru.lab.foodcontrolapp.ui.main.FragmentHome"
         android:label="FragmentHome"
         tools:layout="@layout/fragment_main_home"
-        />
+        >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentAddInMeal"
+            app:destination="@id/fragmentAddInMeal" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentFoodBase"
         android:name="ru.lab.foodcontrolapp.ui.main.FragmentFoodBase"
         android:label="FragmentFoodBase"
         tools:layout="@layout/fragment_main_food_base"
-        />
+        >
+        <action
+            android:id="@+id/action_fragmentFoodBase_to_fragmentFoodDetail"
+            app:destination="@id/fragmentFoodDetail" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentSettings"
@@ -32,4 +40,45 @@
         android:label="FragmentStats"
         tools:layout="@layout/fragment_main_stats"
         />
+    <fragment
+        android:id="@+id/fragmentFoodDetail"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentFoodDetail"
+        android:label="FragmentFoodDetail"
+        tools:layout="@layout/fragment_food_detail"
+        >
+        <argument
+            android:name="food"
+            app:argType="ru.lab.foodcontrolapp.data.database.entity.Food" />
+        <action
+            android:id="@+id/action_fragmentFoodDetail_to_fragmentAddInMeal"
+            app:destination="@id/fragmentAddInMeal" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAddInMeal"
+        android:name="ru.lab.foodcontrolapp.ui.main.FragmentAddInMeal"
+        android:label="FragmentAddInMeal"
+        tools:layout="@layout/fragment_add_in_meal"
+        >
+        <argument
+            android:name="food"
+            app:argType="ru.lab.foodcontrolapp.data.database.entity.Food" />
+        <action
+            android:id="@+id/action_fragmentAddInMeal_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:popUpTo="@id/fragmentFoodBase"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="weight"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="isEdit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
 </navigation>

@@ -13,15 +13,18 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import ru.lab.foodcontrolapp.data.database.dao.MealDao
 import ru.lab.foodcontrolapp.data.database.dao.UserDao
+import ru.lab.foodcontrolapp.data.database.entity.Meal
 import ru.lab.foodcontrolapp.data.database.entity.User
 import java.util.concurrent.Executors
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Meal::class], version = 2, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
+    abstract fun getMealDao(): MealDao
 
     companion object{
         @Volatile
@@ -40,9 +43,9 @@ abstract class AppDatabase : RoomDatabase() {
                                 super.onCreate(db)
                                 GlobalScope.launch(Dispatchers.IO) {
                                     getInstance(context).getUserDao().insertUser(User())
-                                    Log.d("DB",
-                                        getInstance(context).getUserDao().getUser()?.age.toString()
-                                    )
+//                                    Log.d("DB",
+//                                        getInstance(context).getUserDao().getUser()?.age.toString()
+//                                    )
                                 }
                             }
                         })

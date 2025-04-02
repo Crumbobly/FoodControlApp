@@ -15,6 +15,11 @@
     <string name="food_detail_info">Data per 100 grams of food</string>
     <string name="food_detail_calories">Energy value</string>
 
+    <!--   Домашний экран -->
+    <string name="add_meal">Add Meal</string>
+    <string name="kcal_limit">Calories limit:</string>
+    <string name="kcal_today">Consumed today:</string>
+
     <string name="apple">Apple</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
@@ -37,6 +42,7 @@
     <string name="female">Female</string>
     <string name="other">Other</string>
 
+    <string name="reset">Reset</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>

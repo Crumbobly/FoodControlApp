@@ -13,7 +13,12 @@
 
     <!--    Экран блюда -->
     <string name="food_detail_info">Данные на 100 грамм блюда</string>
-    <string name="food_detail_calories">Энергетическая ценность</string>
+    <string name="food_detail_calories">Калорийность</string>
+
+    <!--   Домашний экран -->
+    <string name="add_meal">Добавить блюдо</string>
+    <string name="kcal_limit">Лимит калорий: </string>
+    <string name="kcal_today">Употреблено за сегодня: </string>
 
 
     <string name="apple">Яблоко</string>
@@ -38,6 +43,7 @@
     <string name="female">Женщина</string>
     <string name="other">Другое</string>
 
+    <string name="reset">Сбросить</string>
     <string name="back">Назад</string>
     <string name="save">Сохранить</string>
     <string name="edit">Редактировать</string>

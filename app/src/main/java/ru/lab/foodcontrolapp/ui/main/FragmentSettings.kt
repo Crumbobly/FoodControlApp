@@ -40,20 +40,6 @@ class FragmentSettings : Fragment(R.layout.fragment_main_settings) {
     }
 
 
-//    override fun onHiddenChanged(hidden: Boolean) {
-//        super.onHiddenChanged(hidden)
-//        if (hidden) {
-//            clearFields()
-//            binding.settingsBtnEdit.visibility = View.VISIBLE
-//            binding.settingsBtnEdit.alpha = 1f
-//            binding.settingsBtnSave.visibility = View.INVISIBLE
-//            binding.settingsBtnSave.alpha = 0f
-//            binding.settingsBtnCancel.visibility = View.INVISIBLE
-//            binding.settingsBtnCancel.alpha = 0f
-//            Log.d("FragmentSettings", "is hidden")
-//        }
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

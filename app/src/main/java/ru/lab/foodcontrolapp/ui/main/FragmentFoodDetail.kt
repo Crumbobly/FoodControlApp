@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ru.lab.foodcontrolapp.R
 import ru.lab.foodcontrolapp.data.database.entity.Food
 import ru.lab.foodcontrolapp.databinding.FragmentFoodDetailBinding
@@ -13,6 +14,12 @@ import ru.lab.foodcontrolapp.databinding.FragmentFoodDetailBinding
 class FragmentFoodDetail: Fragment(R.layout.fragment_food_detail) {
 
     private lateinit var binding: FragmentFoodDetailBinding
+    private lateinit var args: FragmentFoodDetailArgs
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        args = FragmentFoodDetailArgs.fromBundle(requireArguments())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,18 +40,23 @@ class FragmentFoodDetail: Fragment(R.layout.fragment_food_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val food = arguments?.getParcelable<Food>("food")
-        if (food != null) {
-            binding.foodName.text = food.name
-            binding.calories.text = "${food.calories}"
-            binding.proteins.text = "${food.protein}"
-            binding.fats.text = "${food.fat}"
-            binding.carbs.text = "${food.carbs}"
-        }
+        val food = args.food
+        binding.foodName.text = food.name
+        binding.calories.text = "${food.calories}"
+        binding.proteins.text = "${food.protein}"
+        binding.fats.text = "${food.fat}"
+        binding.carbs.text = "${food.carbs}"
 
         binding.close.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().navigateUp()
         }
+
+        binding.addAsMealBtn.setOnClickListener {
+            val action = FragmentFoodDetailDirections.actionFragmentFoodDetailToFragmentAddInMeal(food)
+            findNavController().navigate(action)
+        }
+
+
     }
 
 }
